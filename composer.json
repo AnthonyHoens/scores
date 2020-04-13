@@ -1,0 +1,6 @@
+{
+    "name": "antho/scores",
+    "require": {
+        "nesbot/carbon": "^2.32"
+    }
+}
