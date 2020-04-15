@@ -5,4 +5,4 @@ define('TODAY', \Carbon\Carbon::now('Europe/Brussels')
     ->isoformat('dd DD MMMM YYYY'));
 
 $data = [];
-$view = './views/view.php';
+$view = './views/dashboard.php';

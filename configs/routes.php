@@ -21,4 +21,18 @@ return [
         'controller-file'=>'page',
         'callback'=>'\Controllers\Page\dashboard'
     ],
+    [
+        'method'=>'GET',
+        'action'=>'create',
+        'resource'=>'team',
+        'controller-file'=>'team',
+        'callback'=>'\Controllers\Team\create'
+    ],
+    [
+        'method'=>'GET',
+        'action'=>'create',
+        'resource'=>'match',
+        'controller-file'=>'match',
+        'callback'=>'\Controllers\Match\create'
+    ],
 ];

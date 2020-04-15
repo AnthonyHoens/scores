@@ -14,7 +14,7 @@ function dashboard(\PDO $pdo)
     $standings = [];
     $matches  = allWithTeamsGrouped(allWithTeams($pdo));
     $teams = all($pdo);
-    $view = './views/view.php';
+    $view = './views/dashboard.php';
 
     foreach ($matches as $match) {
         $homeTeam = $match->home_team;

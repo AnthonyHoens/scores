@@ -5,10 +5,15 @@
     <title>Premier League 2020</title>
 </head>
 <body>
-<h1>Premier League 2020</h1>
+<div>
+    <a href="index.php">Premier League 2020</a>
+</div>
+<?php include('./views/partials/navigation.php'); ?>
 <?php if(count($standings)): ?>
-<section>
-    <h2>Standings</h2>
+<h1>
+    Classement du championnat
+</h1>
+<div>
     <table>
         <thead>
         <tr>
@@ -43,7 +48,7 @@
 
         </tbody>
     </table>
-</section>
+</div>
 <?php endif; ?>
 <section>
     <h2>Matchs joués au <?= TODAY ?></h2>
@@ -73,41 +78,6 @@
     <?php else: ?>
     <p>Aucun match n'a été joué à ce jour</p>
     <?php endif; ?>
-</section>
-<section>
-    <h2>Encodage d’un nouveau match</h2>
-    <form action="../index.php" method="post">
-        <label for="match-date">Date du match</label>
-        <input type="text" id="match-date" name="match-date" placeholder="2020-04-10">
-        <br>
-        <label for="home-team">Équipe à domicile</label>
-        <select name="home-team" id="home-team">
-            <?php foreach ($teams as $team): ?>
-                <option value="<?= $team->id ?>"><?= $team->name ?> [<?= $team->slug ?>] </option>
-            <?php endforeach; ?>
-        </select>
-        <label for="home-team-unlisted">Équipe non listée&nbsp;?</label>
-        <input type="text" name="home-team-unlisted" id="home-team-unlisted">
-        <br>
-        <label for="home-team-goals">Goals de l’équipe à domicile</label>
-        <input type="text" id="home-team-goals" name="home-team-goals">
-        <br>
-        <label for="away-team">Équipe visiteuse</label>
-        <select name="away-team" id="away-team">
-            <?php foreach ($teams as $team): ?>
-                <option value="<?= $team->id ?>"><?= $team->name ?> [<?= $team->slug ?>] </option>
-            <?php endforeach; ?>
-        </select>
-        <label for="away-team-unlisted">Équipe non listée&nbsp;?</label>
-        <input type="text" name="away-team-unlisted" id="away-team-unlisted">
-        <br>
-        <label for="away-team-goals">Goals de l’équipe visiteuse</label>
-        <input type="text" id="away-team-goals" name="away-team-goals">
-        <br>
-        <input type="hidden" name="action" value="store">
-        <input type="hidden" name="resource" value="match">
-        <input type="submit" value="Ajouter ce match">
-    </form>
 </section>
 </body>
 </html>

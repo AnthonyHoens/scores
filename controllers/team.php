@@ -15,3 +15,9 @@ function store(\PDO $pdo)
     header('Location: index.php');
     exit();
 }
+
+function create()
+{
+    $view = './views/team/create.php';
+    return compact('view');
+}
