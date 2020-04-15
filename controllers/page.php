@@ -1,11 +1,19 @@
 <?php
 namespace Controllers\Page;
 
+use function Models\Team\all;
+use function Models\Match\allWithTeams;
+use function Models\Match\allWithTeamsGrouped;
+
+require('./models/team.php');
+require('./models/match.php');
+require('./utils/standings.php');
+
 function dashboard(\PDO $pdo)
 {
     $standings = [];
-    $matches  = \Models\Match\allWithTeamsGrouped(\Models\Match\allWithTeams($pdo));
-    $teams = \Models\Team\all($pdo);
+    $matches  = allWithTeamsGrouped(allWithTeams($pdo));
+    $teams = all($pdo);
     $view = './views/view.php';
 
     foreach ($matches as $match) {
