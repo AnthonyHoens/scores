@@ -1,5 +1,5 @@
 <?php
-namespace Team;
+namespace Models\Team;
 
 function all(\PDO $connection): array
 {
@@ -25,4 +25,16 @@ function findByName(\PDO $connection, string $name): \stdClass
     $pdoSt->execute([':name' => $name]);
 
     return $pdoSt->fetch();
+}
+
+function save(\PDO $connection, array $team)
+{
+    try {
+        $insertTeamRequest = 'INSERT INTO teams(`name`, `slug`) VALUES (:name, :slug)';
+        $pdoSt = $connection->prepare($insertTeamRequest);
+        $pdoSt->execute([':date'=>$team['name'], ':slug'=>$team['slug']]);
+    } catch (\PDOException $e) {
+        die
+    }
+
 }
