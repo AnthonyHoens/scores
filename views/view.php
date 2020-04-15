@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Premier League 2020</title>
@@ -47,7 +47,7 @@
 <?php endif; ?>
 <section>
     <h2>Matchs joués au <?= TODAY ?></h2>
-    <?php if(count($matches2)): ?>
+    <?php if(count($matches)): ?>
     <table>
         <thead>
         <tr>
@@ -59,7 +59,7 @@
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($matches2 as $match): ?>
+        <?php foreach ($matches as $match): ?>
             <tr>
                 <td><?= ($match->match_date)->format('M l jS, Y') ?></td>
                 <td><?= $match->home_team ?></td>
@@ -76,7 +76,7 @@
 </section>
 <section>
     <h2>Encodage d’un nouveau match</h2>
-    <form action="index.php" method="post">
+    <form action="../index.php" method="post">
         <label for="match-date">Date du match</label>
         <input type="text" id="match-date" name="match-date" placeholder="2020-04-10">
         <br>

@@ -34,7 +34,7 @@ function save(\PDO $connection, array $team)
         $pdoSt = $connection->prepare($insertTeamRequest);
         $pdoSt->execute([':date'=>$team['name'], ':slug'=>$team['slug']]);
     } catch (\PDOException $e) {
-        die
+        die();
     }
 
 }
