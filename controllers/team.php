@@ -1,9 +1,10 @@
 <?php
 namespace Controllers\Team;
 
+use Models\Team;
 use function Models\Team\save;
 
-require('./models/team.php');
+require('./models/Team.php');
 
 function store(\PDO $pdo)
 {
@@ -21,7 +22,8 @@ function store(\PDO $pdo)
     $slug = $_POST['slug'];
 
     if(!$_SESSION['errors']) {
-        save($pdo, compact('name', 'slug'));
+        $teamModel = new Team();
+        $teamModel->save($pdo, compact('name', 'slug'));
         header('Location: index.php');
         exit();
     }
