@@ -15,12 +15,22 @@
     <form action="index.php" method="post">
         <div>
             <label for="name">Entrez le nom de l'équipe</label>
-            <input type="text" id="name" name="name" required>
+            <input type="text" id="name" name="name" value="<?= isset($_SESSION['old'])?$_SESSION['old']['name']:'' ?>">
         </div>
+        <?php if(isset($_SESSION['errors']['name'])): ?>
+            <div>
+                <p><?= $_SESSION['errors']['name'] ?></p>
+            </div>
+        <?php endif; ?>
         <div>
             <label for="slug">Entrez un slug(3 lettres, ni plus, ni moins)</label>
-            <input type="text" id="slug" name="slug" required>
+            <input type="text" id="slug" name="slug" value="<?= isset($_SESSION['old'])?$_SESSION['old']['slug']: '' ?>">
         </div>
+        <?php if(isset($_SESSION['errors']['slug'])): ?>
+            <div>
+                <p><?= $_SESSION['errors']['slug'] ?></p>
+            </div>
+        <?php endif; ?>
 
         <input type="hidden" name="action" value="store">
         <input type="hidden" name="resource" value="team">

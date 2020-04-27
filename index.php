@@ -15,3 +15,6 @@ $data = call_user_func($route['callback'], getConnection());
 extract($data, EXTR_OVERWRITE);
 
 require($view);
+
+$_SESSION['errors'] = [];
+$_SESSION['old'] = [];
