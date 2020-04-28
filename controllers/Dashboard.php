@@ -6,9 +6,9 @@ use Models\Team;
 
 require('./utils/standings.php');
 
-class Page
+class Dashboard
 {
-    function dashboard()
+    function index()
     {
         $matchModel = new Match();
         $teamModel = new Team();
