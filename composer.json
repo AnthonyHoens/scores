@@ -2,5 +2,10 @@
     "name": "antho/scores",
     "require": {
         "nesbot/carbon": "^2.32"
+    },
+    "autoload": {
+        "psr-4": {
+            "Models\\": "models/"
+        }
     }
 }

@@ -4,8 +4,6 @@ namespace Controllers\Page;
 use Models\Match;
 use Models\Team;
 
-require('./models/Team.php');
-require('./models/Match.php');
 require('./utils/standings.php');
 
 function dashboard(\PDO $pdo)

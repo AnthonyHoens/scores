@@ -4,8 +4,6 @@ namespace Controllers\Team;
 use Models\Team;
 use function Models\Team\save;
 
-require('./models/Team.php');
-
 function store(\PDO $pdo)
 {
     if(!isset($_POST['name']) || trim($_POST['name'])==='') {

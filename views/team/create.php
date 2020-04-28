@@ -24,7 +24,7 @@
         <?php endif; ?>
         <div>
             <label for="slug">Entrez un slug(3 lettres, ni plus, ni moins)</label>
-            <input type="text" id="slug" name="slug" value="<?= isset($_SESSION['old'])?$_SESSION['old']['slug']: '' ?>">
+            <input type="text" id="slug" name="slug" value="<?= isset($_SESSION['old'])?$_SESSION['old']['slug']:'' ?>">
         </div>
         <?php if(isset($_SESSION['errors']['slug'])): ?>
             <div>

@@ -4,8 +4,6 @@ namespace Controllers\Match;
 use Models\Match;
 use Models\Team;
 
-require('./models/Match.php');
-require('./models/Team.php');
 
 function store(\PDO $pdo)
 {
