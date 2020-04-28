@@ -2,30 +2,30 @@
 
 namespace Models;
 
-class Match
+class Match extends Model
 {
-    function all(\PDO $connection): array
+    function all(): array
     {
-        $matches =
+
         $matchesRequest = 'SELECT * FROM matches ORDER BY date';
-        $pdoSt = $connection->query($matchesRequest);
+        $pdoSt = $this->pdo->query($matchesRequest);
 
         return $pdoSt->fetchAll();
     }
 
-    function find(\PDO $connection, string $id): \stdClass
+    function find(string $id): \stdClass
     {
         $matchRequest = 'SELECT * FROM matches WHERE id = :id';
-        $pdoSt = $connection->prepare($matchRequest);
+        $pdoSt = $this->pdo->prepare($matchRequest);
         $pdoSt->execute([':id' => $id]);
 
         return $pdoSt->fetch();
     }
 
-    function allWithTeams(\PDO $connection): array
+    function allWithTeams(): array
     {
         $matchesInfoRequest = 'SELECT  * FROM matches JOIN participations p on matches.id = p.match_id JOIN teams t on p.team_id = t.id ORDER BY matches.id, is_home;';
-        $pdoSt = $connection->query($matchesInfoRequest);
+        $pdoSt = $this->pdo->query($matchesInfoRequest);
 
         return $pdoSt->fetchAll();
     }
@@ -53,22 +53,22 @@ class Match
         return $matchesWithTeams;
     }
 
-    function save(\PDO $connection, array $match) {
+    function save(array $match) {
         $insertMatchRequest = 'INSERT INTO matches(`date`, `slug`) VALUES (:date, :slug)';
-        $pdoSt = $connection->prepare($insertMatchRequest);
+        $pdoSt = $this->pdo->prepare($insertMatchRequest);
         $pdoSt->execute([':date'=>$match['date'], ':slug'=>'']);
         $id = $connection->lastInsertId();
 
 
         $insertParticipationRequest = 'INSERT INTO participations(`match_id`, `team_id`, `goals`, `is_home`) VALUES (:match_id, :team_id, :goals, :is_home)';
-        $pdoSt = $connection->prepare($insertParticipationRequest);
+        $pdoSt = $this->pdo->prepare($insertParticipationRequest);
         $pdoSt->execute([
             ':match_id'=>$id,
             ':team_id'=>$match['home-team'],
             ':goals'=>$match['home-team-goals'],
             ':is_home'=> 1
         ]);
-        $pdoSt = $connection->prepare($insertParticipationRequest);
+        $pdoSt = $this->pdo->prepare($insertParticipationRequest);
         $pdoSt->execute([
             ':match_id'=>$id,
             ':team_id'=>$match['away-team'],

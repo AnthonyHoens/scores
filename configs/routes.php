@@ -4,35 +4,35 @@ return [
         'method'=>'POST',
         'action'=>'store',
         'resource'=>'match',
-        'controller-file'=>'match',
-        'callback'=>'\Controllers\Match\store'
+        'controller'=>'Match',
+        'callback'=>'store'
     ],
     [
         'method'=>'POST',
         'action'=>'store',
         'resource'=>'team',
-        'controller-file'=>'team',
-        'callback'=>'\Controllers\Team\store'
+        'controller'=>'Team',
+        'callback'=>'store'
     ],
     [
         'method'=>'GET',
         'action'=>'',
         'resource'=>'',
-        'controller-file'=>'page',
-        'callback'=>'\Controllers\Page\dashboard'
+        'controller'=>'Page',
+        'callback'=>'dashboard'
     ],
     [
         'method'=>'GET',
         'action'=>'create',
         'resource'=>'team',
-        'controller-file'=>'team',
-        'callback'=>'\Controllers\Team\create'
+        'controller'=>'Team',
+        'callback'=>'create'
     ],
     [
         'method'=>'GET',
         'action'=>'create',
         'resource'=>'match',
-        'controller-file'=>'match',
-        'callback'=>'\Controllers\Match\create'
+        'controller'=>'Match',
+        'callback'=>'create'
     ],
 ];

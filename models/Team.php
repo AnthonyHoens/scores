@@ -1,39 +1,39 @@
 <?php
 namespace Models;
 
-class Team
+class Team extends Model
 {
-    function all(\PDO $connection): array
+    function all(): array
     {
         $teamsRequest = 'SELECT * FROM teams ORDER BY name';
-        $pdoSt = $connection->query($teamsRequest);
+        $pdoSt = $this->pdo->query($teamsRequest);
 
         return $pdoSt->fetchAll();
     }
 
-    function find(\PDO $connection, string $id): \stdClass
+    function find( string $id): \stdClass
     {
         $teamRequest = 'SELECT * FROM teams WHERE id = :id';
-        $pdoSt = $connection->prepare($teamRequest);
+        $pdoSt = $this->pdo->prepare($teamRequest);
         $pdoSt->execute([':id' => $id]);
 
         return $pdoSt->fetch();
     }
 
-    function findByName(\PDO $connection, string $name): \stdClass
+    function findByName(string $name): \stdClass
     {
         $teamRequest = 'SELECT * FROM teams WHERE name = :name';
-        $pdoSt = $connection->prepare($teamRequest);
+        $pdoSt = $this->pdo->prepare($teamRequest);
         $pdoSt->execute([':name' => $name]);
 
         return $pdoSt->fetch();
     }
 
-    function save(\PDO $connection, array $team)
+    function save(array $team)
     {
         try {
             $insertTeamRequest = 'INSERT INTO teams(`name`, `slug`) VALUES (:name, :slug)';
-            $pdoSt = $connection->prepare($insertTeamRequest);
+            $pdoSt = $this->pdo->prepare($insertTeamRequest);
             $pdoSt->execute([':name'=>$team['name'], ':slug'=>$team['slug']]);
         } catch (\PDOException $e) {
             die($e->getMessage());

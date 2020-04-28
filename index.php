@@ -4,13 +4,15 @@ session_start();
 require ('vendor/autoload.php');
 
 require('./configs/config.php');
-require('./utils/dbaccess.php');
 
 $route = require ('./utils/router.php');
 
-require('controllers/'.$route['controller-file'].'.php');
+$controllerName = 'Controllers\\'.$route['controller'];
 
-$data = call_user_func($route['callback'], getConnection());
+$controller = new $controllerName();
+
+
+$data = call_user_func([$controller,$route['callback']]);
 
 extract($data, EXTR_OVERWRITE);
 
