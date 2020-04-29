@@ -42,4 +42,11 @@ return [
         'controller' => 'Login',
         'callback' => 'create'
     ],
+    [
+        'method' => 'GET',
+        'action' => 'view',
+        'resource' => 'register-form',
+        'controller' => 'Register',
+        'callback' => 'create'
+    ],
 ];

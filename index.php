@@ -18,5 +18,6 @@ extract($data, EXTR_OVERWRITE);
 
 require($view);
 
+
 $_SESSION['errors'] = [];
 $_SESSION['old'] = [];
