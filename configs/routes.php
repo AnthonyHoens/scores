@@ -49,4 +49,11 @@ return [
         'controller' => 'Register',
         'callback' => 'create'
     ],
+    [
+        'method' => 'POST',
+        'action' => 'check',
+        'resource' => 'login',
+        'controller' => 'Login',
+        'callback' => 'check'
+    ],
 ];
