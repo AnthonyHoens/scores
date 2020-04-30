@@ -56,4 +56,11 @@ return [
         'controller' => 'Login',
         'callback' => 'check'
     ],
+    [
+        'method' => 'POST',
+        'action' => 'logout',
+        'resource' => 'user',
+        'controller' => 'Login',
+        'callback' => 'delete'
+    ],
 ];

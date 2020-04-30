@@ -8,7 +8,11 @@
 <div>
     <a href="index.php">Premier League 2020</a>
 </div>
-<?php include('./views/partials/navigation.php'); ?>
+<?php if(isset($_SESSION['user'])): ?>
+    <?php include('./views/partials/navigation.php'); ?>
+<?php else: ?>
+<?php include('./views/partials/admin-links.php')?>
+<?php endif; ?>
 <?php if(count($standings)): ?>
 <h1>
     Classement du championnat
