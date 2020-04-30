@@ -4,25 +4,12 @@ namespace Models;
 
 class Match extends Model
 {
-    function all(): array
-    {
+    protected $table = 'matches';
+    protected $findKey = 'id';
+    protected $allKey = 'date';
 
-        $matchesRequest = 'SELECT * FROM matches ORDER BY date';
-        $pdoSt = $this->pdo->query($matchesRequest);
 
-        return $pdoSt->fetchAll();
-    }
-
-    function find(string $id): \stdClass
-    {
-        $matchRequest = 'SELECT * FROM matches WHERE id = :id';
-        $pdoSt = $this->pdo->prepare($matchRequest);
-        $pdoSt->execute([':id' => $id]);
-
-        return $pdoSt->fetch();
-    }
-
-    function allWithTeams(): array
+    public function allWithTeams(): array
     {
         $matchesInfoRequest = 'SELECT  * FROM matches JOIN participations p on matches.id = p.match_id JOIN teams t on p.team_id = t.id ORDER BY matches.id, is_home;';
         $pdoSt = $this->pdo->query($matchesInfoRequest);
@@ -30,7 +17,7 @@ class Match extends Model
         return $pdoSt->fetchAll();
     }
 
-    function allWithTeamsGrouped(array $allWithTeams): array
+    public function allWithTeamsGrouped(array $allWithTeams): array
     {
         $matchesWithTeams = [];
         $m = null;
@@ -53,7 +40,7 @@ class Match extends Model
         return $matchesWithTeams;
     }
 
-    function save(array $match) {
+    public function save(array $match) {
         $insertMatchRequest = 'INSERT INTO matches(`date`, `slug`) VALUES (:date, :slug)';
         $pdoSt = $this->pdo->prepare($insertMatchRequest);
         $pdoSt->execute([':date'=>$match['date'], ':slug'=>'']);

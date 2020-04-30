@@ -6,6 +6,9 @@ namespace Models;
 class Model
 {
     protected $pdo;
+    protected $table;
+    protected $findKey;
+    protected $allKey;
 
     public function __construct()
     {
@@ -20,5 +23,22 @@ class Model
         }
 
         $this->pdo = $connection;
+    }
+
+    public function find($key): \StdClass
+    {
+        $request = 'SELECT * FROM '.$this->table.' WHERE '.$this->findKey.' = :'.$this->findKey;
+        $pdoSt = $this->pdo->prepare($request);
+        $pdoSt->execute([':'.$this->findKey => $key]);
+
+        return $pdoSt->fetch();
+    }
+
+    public function all() :array
+    {
+        $request = 'SELECT * FROM '.$this->table.' ORDER BY '.$this->allKey;
+        $pdoSt = $this->pdo->query($request);
+
+        return $pdoSt->fetchAll();
     }
 }
