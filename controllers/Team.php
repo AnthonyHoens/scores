@@ -26,8 +26,8 @@ class Team
             exit();
         }
 
-        $_SESSION['old']['name'] = $_POST['name'];
-        $_SESSION['old']['slug'] = $_POST['slug'];
+        $_SESSION['old']['name'] = $name;
+        $_SESSION['old']['slug'] = $slug;
 
         header('Location: index.php?action=create&resource=team');
         exit();

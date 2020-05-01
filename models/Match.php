@@ -2,6 +2,8 @@
 
 namespace Models;
 
+use Carbon\Carbon;
+
 class Match extends Model
 {
     protected $table = 'matches';
@@ -24,8 +26,7 @@ class Match extends Model
         foreach ($allWithTeams as $match) {
             if(!$match->is_home) {
                 $m = new \stdClass();
-                $d = new \DateTime();
-                $d->setTimestamp((int)$match->date / 1000);
+                $d = Carbon::createFromFormat('Y-m-d H:i:s', $match->date);
                 $m->match_date = $d;
                 $m->away_team = $match->name;
                 $m->away_team_goals = $match->goals;
@@ -36,7 +37,6 @@ class Match extends Model
                 $matchesWithTeams[] = $m;
             }
         }
-
         return $matchesWithTeams;
     }
 
@@ -44,7 +44,7 @@ class Match extends Model
         $insertMatchRequest = 'INSERT INTO matches(`date`, `slug`) VALUES (:date, :slug)';
         $pdoSt = $this->pdo->prepare($insertMatchRequest);
         $pdoSt->execute([':date'=>$match['date'], ':slug'=>'']);
-        $id = $connection->lastInsertId();
+        $id = $this->pdo->lastInsertId();
 
 
         $insertParticipationRequest = 'INSERT INTO participations(`match_id`, `team_id`, `goals`, `is_home`) VALUES (:match_id, :team_id, :goals, :is_home)';
