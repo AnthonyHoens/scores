@@ -13,6 +13,7 @@
     </div>
     <h1>Création d'une équipe</h1>
     <form action="index.php" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="MAX_FILE_SIZE" value="32000000">
         <div>
             <label for="name">Entrez le nom de l'équipe</label>
             <input type="text" id="name" name="name" value="<?= isset($_SESSION['old'])?$_SESSION['old']['name']:'' ?>">

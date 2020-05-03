@@ -19,9 +19,13 @@ class Team extends Model
     public function save(array $team)
     {
         try {
-            $insertTeamRequest = 'INSERT INTO teams(`name`, `slug`) VALUES (:name, :slug)';
+            $insertTeamRequest = 'INSERT INTO teams(`name`, `slug`, `file_name`) VALUES (:name, :slug, :file_name)';
             $pdoSt = $this->pdo->prepare($insertTeamRequest);
-            $pdoSt->execute([':name'=>$team['name'], ':slug'=>$team['slug']]);
+            $pdoSt->execute([
+                ':name' => $team['name'],
+                ':slug' => $team['slug'],
+                ':file_name' => $team['file_name']
+            ]);
         } catch (\PDOException $e) {
             die($e->getMessage());
         }

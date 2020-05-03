@@ -17,6 +17,11 @@
             <label for="email">Entrez votre e-mail</label>
             <input type="text" id="email" name="email" value="<?= isset($_SESSION['old'])?$_SESSION['old']['email']:'' ?>">
         </div>
+        <?php if(isset($_SESSION['errors']['email'])): ?>
+            <div>
+                <p><?= $_SESSION['errors']['email'] ?></p>
+            </div>
+        <?php endif; ?>
         <div>
         <label for="name">Entrez votre nom</label>
         <input type="text" id="name" name="name" value="<?= isset($_SESSION['old'])?$_SESSION['old']['email']:'' ?>">
@@ -30,6 +35,11 @@
             <label for="password">Créez un mot de passe (au moins 8 lettres et 1 majuscule et 1 chiffre)</label>
             <input type="password" id="password" name="password" value="<?= isset($_SESSION['old'])?$_SESSION['old']['password']:'' ?>">
         </div>
+        <?php if(isset($_SESSION['errors']['password'])): ?>
+            <div>
+                <p><?= $_SESSION['errors']['password'] ?></p>
+            </div>
+        <?php endif; ?>
         <div>
             <label for="confirm_password">Répétez votre mot de passe</label>
             <input type="password" id="confirm_password" name="confirm_password" value="<?= isset($_SESSION['old'])?$_SESSION['old']['confirm_password']:'' ?>">
