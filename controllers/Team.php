@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Intervention\Image\Exception\NotWritableException;
 use Intervention\Image\ImageManagerStatic;
 
 class Team
@@ -56,17 +57,34 @@ class Team
         );
 
         ImageManagerStatic::configure(['driver' => 'imagick']);
+
         $image = ImageManagerStatic::make($_FILES['logo']['tmp_name']);
 
+        if( $image->width() >= 400 &&
+            $image->width() <= 1600 &&
+            $image->height() >= 400 &&
+            $image->height() <= 1600) {
 
-        if (!move_uploaded_file(
-            $_FILES['logo']['tmp_name'], $full_file_path.$file_name)
-        ) {
-            $_SESSION['errors']['logo'] = 'Le fichier n\'a pas pu être enregistré sur le serveur. Contactz l\'administrateur';
-            header('Location: index.php?resource=team&action=create');
+            $image->resize(400, 400, static function ($constraint) {
+               $constraint->aspectRatio();
+            });
 
-            exit();
+            $thumb->resize(60, 60, static function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            try {
+                $image->save($full_file_path.$file_name);
+                $thumb->save($thumbs_file_path.$file_name);
+            } catch (NotWritableException $exception) {
+                $_SESSION['errors']['logo'] = 'Le fichier n\'a pas pu être enregistré sur le serveur. Contactz l\'administrateur';
+                header('Location: index.php?resource=team&action=create');
+
+                exit();
+            }
+        } else {
+            $_SESSION['errors']['logo'] = 'Le fichier que vous avez fourni ne respecte pas les contrainte de taille';
         }
+
 
         if(!isset($_POST['name']) || trim($_POST['name'])==='') {
             $_SESSION['errors']['name'] = 'Vous devez entrer un nom pour une équipe';
