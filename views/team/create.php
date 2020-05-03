@@ -16,7 +16,7 @@
         <input type="hidden" name="MAX_FILE_SIZE" value="32000000">
         <div>
             <label for="name">Entrez le nom de l'équipe</label>
-            <input type="text" id="name" name="name" value="<?= isset($_SESSION['old'])?$_SESSION['old']['name']:'' ?>">
+            <input type="text" id="name" name="name" value="<?= isset($_SESSION['old']['name'])?$_SESSION['old']['name']:'' ?>">
         </div>
         <?php if(isset($_SESSION['errors']['name'])): ?>
             <div>
@@ -25,7 +25,7 @@
         <?php endif; ?>
         <div>
             <label for="slug">Entrez un slug(3 lettres, ni plus, ni moins)</label>
-            <input type="text" id="slug" name="slug" value="<?= isset($_SESSION['old'])?$_SESSION['old']['slug']:'' ?>">
+            <input type="text" id="slug" name="slug" value="<?= isset($_SESSION['old']['slug'])?$_SESSION['old']['slug']:'' ?>">
         </div>
         <?php if(isset($_SESSION['errors']['slug'])): ?>
             <div>

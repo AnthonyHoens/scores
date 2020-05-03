@@ -15,7 +15,7 @@
     <form action="index.php" method="post">
         <div>
             <label for="email">Entrez votre e-mail</label>
-            <input type="text" id="email" name="email" value="<?= isset($_SESSION['old'])?$_SESSION['old']['email']:'' ?>">
+            <input type="text" id="email" name="email" value="<?= isset($_SESSION['old']['email'])?$_SESSION['old']['email']:'' ?>">
         </div>
         <?php if(isset($_SESSION['errors']['email'])): ?>
             <div>
@@ -24,7 +24,7 @@
         <?php endif; ?>
         <div>
             <label for="password">Entrez votre mot de passe (au moins 8 lettres et 1 majuscule et 1 chiffre)</label>
-            <input type="text" id="password" name="password" value="<?= isset($_SESSION['old'])?$_SESSION['old']['password']:'' ?>">
+            <input type="text" id="password" name="password" value="<?= isset($_SESSION['old']['password'])?$_SESSION['old']['password']:'' ?>">
         </div>
         <?php if(isset($_SESSION['errors']['password'])): ?>
             <div>
