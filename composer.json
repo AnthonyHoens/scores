@@ -1,7 +1,8 @@
 {
     "name": "antho/scores",
     "require": {
-        "nesbot/carbon": "^2.32"
+        "nesbot/carbon": "^2.32",
+        "intervention/image": "^2.5"
     },
     "autoload": {
         "psr-4": {
